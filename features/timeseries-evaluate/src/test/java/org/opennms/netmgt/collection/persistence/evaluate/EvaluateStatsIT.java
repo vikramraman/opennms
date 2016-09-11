@@ -36,10 +36,10 @@ import org.junit.Test;
 import org.opennms.core.collection.test.MockCollectionAgent;
 import org.opennms.core.utils.InetAddressUtils;
 import org.opennms.netmgt.collection.api.ServiceParameters;
-import org.opennms.netmgt.collection.support.builder.AttributeType;
 import org.opennms.netmgt.collection.support.builder.CollectionSetBuilder;
 import org.opennms.netmgt.collection.support.builder.InterfaceLevelResource;
 import org.opennms.netmgt.collection.support.builder.NodeLevelResource;
+import org.opennms.netmgt.config.datacollection.AttributeType;
 import org.opennms.netmgt.rrd.RrdRepository;
 
 import com.codahale.metrics.MetricRegistry;

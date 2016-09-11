@@ -39,6 +39,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import org.opennms.netmgt.config.datacollection.AttributeType;
+import org.opennms.netmgt.config.datacollection.AttributeTypeAdapter;
+
 import java.util.Objects;
 
 @XmlRootElement(name="attrib")
@@ -53,7 +58,8 @@ public class Attrib implements java.io.Serializable {
     private String _alias;
 
     @XmlAttribute(name="type", required=true)
-    private String _type;
+    @XmlJavaTypeAdapter(AttributeTypeAdapter.class)
+    private AttributeType _type;
 
     @XmlAttribute(name="maxval")
     private String _maxval;
@@ -94,7 +100,7 @@ public class Attrib implements java.io.Serializable {
         return this._name;
     }
 
-    public String getType() {
+    public AttributeType getType() {
         return this._type;
     }
 
@@ -119,7 +125,7 @@ public class Attrib implements java.io.Serializable {
         this._name = name;
     }
 
-    public void setType(final String type) {
+    public void setType(final AttributeType type) {
         this._type = type;
     }
 }

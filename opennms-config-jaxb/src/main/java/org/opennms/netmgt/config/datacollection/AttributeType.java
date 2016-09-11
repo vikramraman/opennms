@@ -26,7 +26,7 @@
  *     http://www.opennms.com/
  *******************************************************************************/
 
-package org.opennms.netmgt.collection.support.builder;
+package org.opennms.netmgt.config.datacollection;
 
 /**
  * Supported attribute types.

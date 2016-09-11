@@ -28,6 +28,8 @@
 
 package org.opennms.netmgt.collection.support.builder;
 
+import org.opennms.netmgt.config.datacollection.AttributeType;
+
 public class StringAttribute extends Attribute<String> {
     public StringAttribute(Resource resource, String group, String name, String value, String identifier) {
         super(resource, group, name, value, AttributeType.STRING, identifier);
