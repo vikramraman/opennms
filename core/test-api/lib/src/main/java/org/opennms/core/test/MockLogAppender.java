@@ -35,12 +35,11 @@ import java.util.Properties;
 
 import junit.framework.AssertionFailedError;
 
-import org.slf4j.LoggerFactory;
-
 /**
  * <p>MockLogAppender class. If you do not specify the log level specifically, the level
- * will default to DEBUG and you can control the level by setting the <code>mock.logLevel</code>
- * system property.</p>
+ * will default to DEBUG. You can control the level by using the {@link #setupLogging(boolean, String)}
+ * or {@link #setupLogging(boolean, String, Properties)} methods.
+ * </p>
  * 
  * Used in unit tests to check that the level of logging produced by a test was suitable.
  * In some cases, the test will be that no messages were logged at a higher priority than
@@ -58,7 +57,7 @@ import org.slf4j.LoggerFactory;
 public class MockLogAppender {
     private static final LoggingEvent[] EMPTY_LOGGING_EVENT = new LoggingEvent[0];
 
-    private static List<LoggingEvent> s_events;
+    private static List<LoggingEvent> s_events = Collections.synchronizedList(new LinkedList<LoggingEvent>());
     private static Level s_highestLoggedLevel = Level.TRACE;
     private static String s_defaultLevel = "DEBUG";
     private static MockLogAppender s_instance = null;
@@ -67,7 +66,6 @@ public class MockLogAppender {
      * <p>Constructor for MockLogAppender.</p>
      */
     protected MockLogAppender() {
-        MockLoggerFactory.setAppender(this);
         resetEvents();
         resetLogLevel();
     }
@@ -249,6 +247,7 @@ public class MockLogAppender {
     public static void resetLogLevel() {
         s_highestLoggedLevel = Level.TRACE;
         System.setProperty(MockLogger.DEFAULT_LOG_LEVEL_KEY, s_defaultLevel);
+        MockLogger.init();
     }
 
     /**

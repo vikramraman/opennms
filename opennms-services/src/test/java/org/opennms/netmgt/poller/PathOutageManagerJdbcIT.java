@@ -112,8 +112,6 @@ public class PathOutageManagerJdbcIT implements TemporaryDatabaseAware<MockDatab
 	@Before
 	public void setUp() throws Exception {
 
-		// System.setProperty("mock.logLevel", "DEBUG");
-		// System.setProperty("mock.debug", "true");
 		MockUtil.println("------------ Begin Test  --------------------------");
 		MockLogAppender.setupLogging();
 
