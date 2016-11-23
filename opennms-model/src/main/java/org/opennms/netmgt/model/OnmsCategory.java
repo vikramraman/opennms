@@ -35,6 +35,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -167,7 +168,7 @@ public class OnmsCategory implements Serializable, Comparable<OnmsCategory> {
 	 *
 	 * @return a {@link java.util.Set} object.
 	 */
-	@ElementCollection
+	@ElementCollection(fetch=FetchType.EAGER)
 	@JoinTable(name="category_group", joinColumns=@JoinColumn(name="categoryId"))
 	@Column(name="groupId", nullable=false, length=64)
 	public Set<String> getAuthorizedGroups() {

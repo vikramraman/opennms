@@ -132,7 +132,9 @@ public class CategoryRestServiceIT extends AbstractSpringJerseyRestTestCase {
 
         JSONObject restObject = new JSONObject(json);
         JSONObject expectedObject = new JSONObject(IOUtils.toString(new FileInputStream("src/test/resources/v1/categories.json")));
-        JSONAssert.assertEquals(expectedObject, restObject, true);
+
+        // Do non-strict comparison because ordering is not guaranteed
+        JSONAssert.assertEquals(expectedObject, restObject, false);
     }
 
     @Test
