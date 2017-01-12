@@ -1011,6 +1011,12 @@ public class DefaultProvisionService implements ProvisionService, InitializingBe
             final ForeignSource fs = m_foreignSourceRepository.getForeignSource(effectiveForeignSource);
 
             final Duration scanInterval = fs.getScanInterval();
+            
+            if (scanInterval.equals(Duration.ZERO) && !force) {
+                LOG.debug("foreign source {} scan interval is zero, skipping schedule");
+                return null;
+            }
+
             Duration initialDelay = Duration.ZERO;
             if (node.getLastCapsdPoll() != null && !force) {
                 final DateTime nextPoll = new DateTime(node.getLastCapsdPoll().getTime()).plus(scanInterval);
